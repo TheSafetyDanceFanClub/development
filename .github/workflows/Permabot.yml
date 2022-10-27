@@ -5,13 +5,8 @@ name: Permabot
 # This workflow handles notifying Permabot about changes in workflow
 on:
   pull_request:
-    branches: [ "main" ]
   pull_request_review:
-    branches: [ "main" ]
   pull_request_review_comment:
-    branches: [ "main" ]     
-  pull_request_target:
-    branches: [ "main" ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
