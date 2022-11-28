@@ -1,0 +1,38 @@
+# Workflow for tag and archive.
+
+name: TagAndArchive
+
+on:
+  push:
+    branches:
+      - 'release/**'
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    runs-on: [self-hosted, linux]
+    steps:
+      - run: echo "This job was triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server."
+      - run: echo "Checking out branch ${{ github.ref }} in repository ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "This job's status is ${{ job.status }}."
+  build-all:
+    runs-on: [self-hosted, linux, x64]
+    needs: checkout
+    steps:
+      - run: echo "Running make jenkins."
+      - name: Run make jenkins
+        run: |
+          make jenkins
+      - run: echo "This job's status is ${{ job.status }}."
+  tag-and-archive:
+    runs-on: [self-hosted, linux]
+    needs: [checkout, build-all]
+    steps:
+      - run: echo "Running tagAndArchive.pl."
+      - run: echo "Done."
