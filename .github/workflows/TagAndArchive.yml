@@ -17,8 +17,6 @@ jobs:
       - run: echo "Checking out branch ${{ github.ref }} in repository ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-	with:
-	  ssh-key: ${{ secrets.DEPLOY_KEY }}
   build-all:
     runs-on: [self-hosted, linux, x64]
     needs: checkout
