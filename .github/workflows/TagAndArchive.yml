@@ -17,15 +17,10 @@ jobs:
       - run: echo "Checking out branch ${{ github.ref }} in repository ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "This job's status is ${{ job.status }}."
   build-all:
     runs-on: [self-hosted, linux, x64]
     needs: checkout
     steps:
-      - run: echo "Running make jenkins."
       - name: Run make jenkins
         run: |
           make jenkins
@@ -34,5 +29,6 @@ jobs:
     runs-on: [self-hosted, linux]
     needs: [checkout, build-all]
     steps:
-      - run: echo "Running tagAndArchive.pl."
-      - run: echo "Done."
+      - run: |
+        /permabit/user/joe/p4/3/src/perl/bin/tagAndArchive --debug --archiveTo=/permabit/user/joe/permabit/release/source/development --sourcesOnly --noUpdateLink --sourceControl=git --versionFile=CURRENT_VERSION
+      - run: echo "This job's status is ${{ job.status }}."
