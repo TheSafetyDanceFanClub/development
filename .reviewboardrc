@@ -1,0 +1,2 @@
+REVIEWBOARD_URL = 'http://reviews.permabit.com/'
+REPOSITORY = 'Git-Test-Repo'
