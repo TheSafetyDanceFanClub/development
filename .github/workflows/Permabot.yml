@@ -17,7 +17,18 @@ jobs:
   notification:
     runs-on: self-hosted
     steps:    
-      - name: Notifications
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # install the python version needed
+          
+      - name: install python packages
         run: |
-          echo "Sending ${{github.event_name}} event to Permabot webserver for processing"
-          curl --verbose -X POST http://localhost:8080/github/api/ -H 'Content-Type: application/json' -H 'X-GitHub-Event: ${{github.event_name}}' -d @${{github.event_path}}
+          python -m pip install --upgrade pip
+          pip install -r RBTools
+                    
+      - name: execute py script # run reviewboard.py
+        run: |
+          echo "Sending ${{github.event_name}} event to ReviewBoard webserver for processing"
+          python reviewboard.py -e ${{github.event_name}} -p @${{github.event_path}}
+          
