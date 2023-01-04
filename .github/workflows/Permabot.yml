@@ -6,7 +6,7 @@ name: Permabot
 on:
   pull_request_target:
     types:
-      [ "opened", "closed", "edited", "labeled", "unlabeled", "assigned", "unassigned", "review_requested", "review_requst_removed" ]
+      [ "opened", "closed", "edited", "labeled", "unlabeled", "assigned", "unassigned", "review_requested", "review_request_removed" ]
     branches:
       [ "main" ]
   # Allows you to run this workflow manually from the Actions tab
