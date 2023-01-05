@@ -24,6 +24,6 @@ jobs:
                     
       - name: execute py script # run reviewboard.py
         run: |
-          echo "Sending ${{github.event_name}} event to ReviewBoard webserver for processing"
+          echo "Sending ${{github.event_name}} event with payload: @${{github.event_path}}"
           python reviewboard.py ${{github.event_name}} -p @${{github.event_path}}
           
