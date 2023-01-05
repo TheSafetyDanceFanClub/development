@@ -25,6 +25,5 @@ jobs:
       - name: execute py script # run reviewboard.py
         run: |
           echo "Sending ${{github.event_name}} event with payload: ${{github.event_path}}"
-          cp ${{github.event_path}} /u1/actions-runner/.
-          python reviewboard.py ${{github.event_name}} -p ${{github.event_path}}
+          python ghnotifier.py ${{github.event_name}} -p ${{github.event_path}}
           
