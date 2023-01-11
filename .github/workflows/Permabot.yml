@@ -19,11 +19,6 @@ on:
       [ "created", "edited", "deleted" ]
     branches:
       [ "main" ]
-  pull_request_review_thread:
-    types:
-      [ "resolved", "unresolved" ]
-    branches:
-      [ "main" ]
   issue_comment:
     types:
       [ "created", "edited", "deleted" ]
